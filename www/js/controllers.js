@@ -41,16 +41,59 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
+.controller('PersonagensCtrl', function ($scope, $http) {
+   /* $scope.personagens = [
     { title: 'Reggae', id: 1 },
     { title: 'Chill', id: 2 },
     { title: 'Dubstep', id: 3 },
     { title: 'Indie', id: 4 },
     { title: 'Rap', id: 5 },
     { title: 'Cowbell', id: 6 }
-  ];
+  ]; */
+
+    $scope.personagens = [];
+        $http.get('/personagens.json')
+         .success(function(data) {
+            console.log('data', data);
+           $scope.personagens = data;
+         })
+         .error(function(err) {
+              console.log('erro buscando personagens', err);
+         }); 
+
+
+
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+.controller('PersonagemCtrl', function($scope, $stateParams) {
+    console.log('$stateParams', $stateParams);
+    $scope.personagem = $stateParams.personagem;
+})
+
+.controller('FeedsCtrl', function($scope, $stateParams) {
+
+    $scope.doRefresh = function () {
+        console.log('Refreshing....');
+        $scope.$broadcast('scroll.refreshComplete');
+
+        /*
+        
+        
+        $http.get('/new-items')
+         .success(function(newItems) {
+           $scope.items = newItems;
+         })
+         .finally(function() {
+           // Stop the ion-refresher from spinning
+           $scope.$broadcast('scroll.refreshComplete');
+         }); 
+
+        */       
+    };
+
+})
+
+.controller('NpcsCtrl', function($scope, $stateParams) {
+})
+
+;

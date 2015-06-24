@@ -1,0 +1,26 @@
+[
+    {
+        "id":"1", "cla":"Tremere", "nome": "Jason Philip Adams", "apelido":"Jason", 
+        "jogador":"Tommy Wolf",
+        "descricao":"Tremere", "planilha":"planilha","claImage":"img/clanlogos/tremere.png",
+        "historia":"Jason sempre foi um grande filho da puta. Não era o mais forte, não era o mais rápido, não era o mais popular. Ele era simplesmente aquele que fazia os outros fazerem as coisas em seu lugar. E foi apenas por isso que ele foi Abraçado: por ser o mais esperto e mais manipulador. Porém, ser Abraçado só porque ele sabia enrolar as pessoas não era justamente o que ele tinha em mente. Ao descobrir que o Clã Tremere tinha muito mais a oferecer, ele logo tratou de cair de cabeça dentro dos estudos do oculto, tentando mostrar que não era apenas um manipulador. Ele também era um magus de respeito. Ainda assim, ele sabia lá no fundo que na verdade, ele era apenas um grande filho da puta. Mesmo tendo aprendido a manipular a magia do sangue, sabendo de cor vários rituais, ele sabia que o que ele gostava de fazer era passar a perna nos outros. E foi assim que ele ganhou seu dinheiro, sua fama, sua boate e seu Elísio: enrolando e manipulando. \n\nJason é alto, loiro, cabelos curtos, olhos azuis e voz marcante. Aparenta ter uns 30 anos, talvez menos, e sempre se veste muitíssimo bem, mas não no termo social. Ele se veste dentro da moda atual, uma vez que ele lida com um publico mais jovial e descolado. \n\nSua fama vem de sua boate, assim como seus Recursos. Sua boate é a maior atração da cidade (em termos de vida noturna), e com ela, ele conseguiu seu prestígio na cidade. Ele também conseguiu fazer com que a boate se tornasse um Elísio, o que garante a segurança do Clube Noturno e também a presença de alguns Membros por ali, o que lhe fornece informação e mais fama/prestígio. Eventualmente, ele oferece refúgio para um ou outro vampiro, em troca de favores. Da mesma forma, o Rebanho vem do clube, são os frequentadores, geralmente as mulheres interesseiras que querem ficar perto do dono da casa. Os lacaios: um guarda-costas (que serve de leão-de-chácara no clube) e uma hacker, já que meu buneco não entende nada de computadores."
+    },
+    {
+        "id":"2", "cla":"Ventrue", "nome": "Hannibal Trautmam", "apelido":"H.Trautmam", 
+        "jogador":"Douglas Amorim",
+        "descricao":"Ventrue", "planilha":"planilha","claImage":"img/clanlogos/ventrue.png",
+        "historia":""
+    },
+    {
+        "id":"3", "cla":"Nosferatu", "nome": "ODOZ3", "apelido":"ODOZ3", 
+        "jogador":"Leandro Lisboa",
+        "descricao":"Nosferatu", "planilha":"planilha","claImage":"img/clanlogos/nosferatu.png",
+        "historia":""
+    },
+    {
+        "id":"4", "cla":"Gangrel", "nome": "Jay Connors", "apelido":"JC", 
+        "jogador":"Wagner Barbosa",
+        "descricao":"Gangrel", "planilha":"planilha","claImage":"img/clanlogos/gangrel.png",
+        "historia":""
+    }
+]

@@ -1,0 +1,11 @@
+<ion-view view-title="Personagens">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-thumbnail-left" ng-repeat="p in personagens | orderBy: 'nome'" ui-sref="app.personagem({personagemId: p.id, personagem: p})" > <!-- href="#/app/personagem/{{p.id}}"> -->
+          <img ng-src="{{p.claImage}}">
+          <h2>{{p.nome}}</h2>
+          <p>{{p.jogador}}</p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

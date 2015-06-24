@@ -30,42 +30,59 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'AppCtrl'
   })
 
-  .state('app.search', {
-    url: "/search",
+
+
+  .state('app.cidade', {
+    url: "/cidade",
     views: {
       'menuContent': {
-        templateUrl: "templates/search.html"
+        templateUrl: "templates/cidade.html"
       }
     }
   })
 
-  .state('app.browse', {
-    url: "/browse",
+  .state('app.feeds', {
+    url: "/feeds",
     views: {
       'menuContent': {
-        templateUrl: "templates/browse.html"
+        templateUrl: "templates/feeds.html",
+        controller: "FeedsCtrl"
       }
     }
   })
-    .state('app.playlists', {
-      url: "/playlists",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/playlists.html",
-          controller: 'PlaylistsCtrl'
-        }
-      }
-    })
 
-  .state('app.single', {
-    url: "/playlists/:playlistId",
+  .state('app.npcs', {
+    url: "/npcs",
     views: {
       'menuContent': {
-        templateUrl: "templates/playlist.html",
-        controller: 'PlaylistCtrl'
+        templateUrl: "templates/npcs.html",
+        controller: 'NpcsCtrl'
+      }
+    }
+  })
+
+  .state('app.personagens', {
+    url: "/personagens",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/personagens.html",
+        controller: 'PersonagensCtrl'
+      }
+    }
+  })
+
+  .state('app.personagem', {
+    url: "/personagem/:personagemId",
+    params: {
+        personagem: {}
+    },
+    views: {
+      'menuContent': {
+        templateUrl: "templates/personagem.html",
+        controller: 'PersonagemCtrl'
       }
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/feeds');
 });
