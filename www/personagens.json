@@ -9,18 +9,18 @@
         "id":"2", "cla":"Ventrue", "nome": "Hannibal Trautmam", "apelido":"H.Trautmam", 
         "jogador":"Douglas Amorim",
         "descricao":"Ventrue", "planilha":"planilha","claImage":"img/clanlogos/ventrue.png",
-        "historia":""
+        "historia":"O Coronel Hannibal Trautmam lutou na Guerra Civil Americana onde foi abraçado a beira da morte em sua última batalha, o ferimento em seu torax nunca cicatrizou completamente. \nTornou-se um grande pecuarista após ganhar muito dinheiro em mesas de poker. \nAgora é um forasteiro em uma nova cidade aparentemente buscando novos negócios no mundo mortal aparece sempre acompanhado de sua Secretária(uma Pepper do HdF versão Negra) ou de suas Motoristas ou das Guarda-Costas (estilo Hope do Lex Lutor, Negras)"
     },
     {
         "id":"3", "cla":"Nosferatu", "nome": "ODOZ3", "apelido":"ODOZ3", 
         "jogador":"Leandro Lisboa",
         "descricao":"Nosferatu", "planilha":"planilha","claImage":"img/clanlogos/nosferatu.png",
-        "historia":""
+        "historia":"Sem história. Que vergonha!!!"
     },
     {
         "id":"4", "cla":"Gangrel", "nome": "Jay Connors", "apelido":"JC", 
         "jogador":"Wagner Barbosa",
         "descricao":"Gangrel", "planilha":"planilha","claImage":"img/clanlogos/gangrel.png",
-        "historia":""
+        "historia":"em construção!"
     }
 ]
