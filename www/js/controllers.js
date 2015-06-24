@@ -52,7 +52,7 @@ angular.module('starter.controllers', [])
   ]; */
 
     $scope.personagens = [];
-        $http.get('/personagens.json')
+        $http.get('./personagens.json')
          .success(function(data) {
             console.log('data', data);
            $scope.personagens = data;
