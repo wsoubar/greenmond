@@ -73,6 +73,15 @@ angular.module('starter', ['ionic', 'ngStorage', 'starter.controllers'])
     }
   })
 
+  .state('app.criacao', {
+    url: "/criacao",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/criacao.html"
+      }
+    }
+  })
+
   .state('app.personagens', {
     url: "/personagens",
     views: {
