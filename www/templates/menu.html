@@ -24,10 +24,16 @@
         </ion-item>
         -->
         <li class="item item-image">
-            <img src="./img/clanlogos/ventrue.png" class="gm-header-menu-img">
+            <img ng-src="{{user.claImage ? user.claImage : './img/clanlogos/caitiff.png'}}" class="gm-header-menu-img"> <!-- ./img/clanlogos/ventrue.png -->
         </li>
-        <a class="item item-icon-left" menu-close href ng-click="login()">
-          <i class="icon ion-person"></i>
+        <div class="item item-avatar" ng-show="user">
+          <img ng-src="{{user.claImage}}">
+          <h2>{{user.nome}}</h2>
+          <p>{{user.jogador}}</p>
+        </div>
+
+        <a class="item item-icon-left" menu-close href ng-click="login()" ng-hide="user">
+          <i class="icon ion-log-in"></i>
           Login
         </a>      
         <a class="item item-icon-left" menu-close ui-sref="app.feeds">
@@ -45,6 +51,10 @@
         <a class="item item-icon-left" menu-close ui-sref="app.npcs">
           <i class="icon ion-ios-people-outline"></i>
             NPCs
+        </a>      
+        <a class="item item-icon-left" menu-close href ng-click="doLogout()" ng-show="user">
+          <i class="icon ion-log-out"></i>
+          Sair
         </a>      
         <!-- 
         <ion-item menu-close href="#/app/search">

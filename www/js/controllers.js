@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $ionicPopup, $timeout, $localStorage, $rootScope) {
   
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -8,6 +8,7 @@ angular.module('starter.controllers', [])
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
+//    $scope.personagens = [];
   
   // Form data for the login modal
   $scope.loginData = {};
@@ -28,10 +29,50 @@ angular.module('starter.controllers', [])
   $scope.login = function() {
     $scope.modal.show();
   };
+  // An alert dialog
+   $scope.showAlert = function (title, msg) {
+     var alertPopup = $ionicPopup.alert({
+       title: title,
+       template: msg
+     });
+     alertPopup.then(function(res) {
+       console.log('fechou alert');
+     });
+   };
+
+   $scope.doLogout = function() {
+      if (confirm('Sair?')) {
+          $localStorage.user = undefined;
+          $rootScope.user = undefined;
+      }
+   };
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
+
+    if (!$scope.loginData.username || !$scope.loginData.password) {
+        $scope.showAlert('Falha', 'Usuário e senha devem estar preenchidos!');        
+        return;
+    }
+
+    var user = undefined;
+    for (var i = 0; i < $rootScope.personagens.length; i++) {
+        p = $rootScope.personagens[i];
+        if (p.apelido == $scope.loginData.username && p.senha == $scope.loginData.password) {
+            user = angular.copy(p);
+        }
+    };
+
+    if (user) {
+        $scope.showAlert('Sucesso', 'Bem vindo, <strong>' + user.jogador+'</strong>!');
+        $localStorage.user = user;   
+        $rootScope.user = user;
+    } else {
+        $scope.showAlert('Falha', 'Usuário ou senha inválidos!');        
+        return;
+    }
+    // $scope.showAlert('Sucesso', 'Login realizado com sucesso');
 
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
@@ -39,6 +80,11 @@ angular.module('starter.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
+
+  if ($localStorage.user) {
+      $rootScope.user = $localStorage.user;
+  }
+
 })
 
 .controller('PersonagensCtrl', function ($scope, $http) {
@@ -52,14 +98,14 @@ angular.module('starter.controllers', [])
   ]; */
 
     $scope.personagens = [];
-        $http.get('./personagens.json')
-         .success(function(data) {
-            console.log('data', data);
-           $scope.personagens = data;
-         })
-         .error(function(err) {
-              console.log('erro buscando personagens', err);
-         }); 
+    $http.get('./personagens.json')
+     .success(function(data) {
+        console.log('data', data);
+       $scope.personagens = data;
+     })
+     .error(function(err) {
+          console.log('erro buscando personagens', err);
+     }); 
 
 
 
