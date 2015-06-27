@@ -42,8 +42,8 @@ angular.module('starter.controllers', [])
 
    $scope.doLogout = function() {
       if (confirm('Sair?')) {
-          $localStorage.user = undefined;
-          $rootScope.user = undefined;
+          delete $localStorage.user;
+          delete $rootScope.user;
       }
    };
 
@@ -105,7 +105,7 @@ angular.module('starter.controllers', [])
       
       if ($scope.formData.mensagem) {
         $scope.feeds.$add({
-          "nome": $scope.user.nome, 
+          "nome": $scope.user.nome + ' ('+$scope.user.jogador+')', 
           "mensagem": $scope.formData.mensagem,
           "imagem": $scope.user.claImage,
           "data": Date.now()

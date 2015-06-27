@@ -1,10 +1,13 @@
 <ion-view view-title="Feed">
   <ion-content>
+      <div class="item" ng-hide="user">
+         <h3>Você precisa fazer o login para acessar o feed da história</h3>
+      </div>
       <ion-refresher
         pulling-text="Pull to refresh..."
         on-refresh="doRefresh()">
       </ion-refresher>
-      <form id="sendform" name="sendform" ng-submit="addFeed()">
+      <form id="sendform" name="sendform" ng-submit="addFeed()" ng-show="user">
 
         <div class="list list-inset" style="padding-bottom: 15px;">
           <label class="item item-input">
@@ -17,15 +20,16 @@
         </div>
       </form>
           
-<div class="list">
+      <div class="list" ng-show="user">
 
-    <div class="item item-avatar" ng-repeat="feed in feeds | orderBy: '-data'">
-      <img ng-src="{{feed.imagem}}">
-      <h2>{{feed.nome}}</h2> <!-- {{feed.data | date: 'dd/MM/yyyy HH:mm'}} -->
-      <p>{{feed.mensagem}}</p>
-    </a>
+          <div class="item item-avatar" ng-repeat="feed in feeds | orderBy: '-data'">
+            <img ng-src="{{feed.imagem}}">
+            <h2>{{feed.nome}}</h2> <!-- {{feed.data | date: 'dd/MM/yyyy HH:mm'}} -->
+            <p>{{feed.mensagem}}</p>
+          </a>
 
-</div>
+      </div>
+  
 
   </ion-content>
 </ion-view>
