@@ -88,26 +88,6 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PersonagensCtrl', function ($scope, $http) {
-   /* $scope.personagens = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ]; */
-
-    $scope.personagens = [];
-    $http.get('./personagens.json')
-     .success(function(data) {
-        console.log('data', data);
-       $scope.personagens = data;
-     })
-     .error(function(err) {
-          console.log('erro buscando personagens', err);
-     }); 
-
-
 
 })
 

@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'ngStorage', 'starter.controllers'])
 
-.run(function($ionicPlatform, $rootScope, $http) {
+.run(function($ionicPlatform, $rootScope, $http, $ionicHistory) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -27,7 +27,16 @@ angular.module('starter', ['ionic', 'ngStorage', 'starter.controllers'])
           console.log('erro buscando personagens', err);
      }); 
 
-
+   var de = $ionicPlatform.registerBackButtonAction(function (event) {
+      //if($ionicHistory.currentStateName() == "myiew"){
+       // ionic.Platform.exitApp();
+        // or do nothing
+      //} else {
+        $ionicHistory.goBack();
+        // alert('Opa!!!');
+      //}
+    }, 100);
+   $scope.$on('$destroy', de);
 
   });
 })
@@ -78,6 +87,15 @@ angular.module('starter', ['ionic', 'ngStorage', 'starter.controllers'])
     views: {
       'menuContent': {
         templateUrl: "templates/criacao.html"
+      }
+    }
+  })
+
+  .state('app.planilha', {
+    url: "/planilha",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/planilha.html"
       }
     }
   })
