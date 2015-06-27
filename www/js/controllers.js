@@ -96,7 +96,25 @@ angular.module('starter.controllers', [])
     $scope.personagem = $stateParams.personagem;
 })
 
-.controller('FeedsCtrl', function($scope, $stateParams) {
+.controller('FeedsCtrl', function($scope, $stateParams, Feeds) {
+
+    $scope.formData = {};
+    $scope.feeds = Feeds;
+
+    $scope.addFeed = function() {
+      
+      if ($scope.formData.mensagem) {
+        $scope.feeds.$add({
+          "nome": $scope.user.nome, 
+          "mensagem": $scope.formData.mensagem,
+          "imagem": $scope.user.claImage,
+          "data": Date.now()
+        })
+        .then(function () {
+            $scope.formData.mensagem = '';
+        });
+      }
+    };
 
     $scope.doRefresh = function () {
         console.log('Refreshing....');
@@ -117,6 +135,14 @@ angular.module('starter.controllers', [])
         */       
     };
 
+    //https://glaring-fire-2264.firebaseio.com/#-JsigPT5itr5P6JNC1jt|37775b3c2c26d0a3dc3165043b69a4b9
+
+
+})
+.factory("Feeds", function($firebaseArray) {
+  var feedsRef = new Firebase("https://glaring-fire-2264.firebaseio.com/feeds");
+  var query = feedsRef.limitToLast(40);
+  return $firebaseArray(query);
 })
 
 .controller('NpcsCtrl', function($scope, $stateParams) {

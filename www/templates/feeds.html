@@ -4,17 +4,28 @@
         pulling-text="Pull to refresh..."
         on-refresh="doRefresh()">
       </ion-refresher>
+      <form id="sendform" name="sendform" ng-submit="addFeed()">
 
+        <div class="list list-inset" style="padding-bottom: 15px;">
+          <label class="item item-input">
+            <textarea ng-model="formData.mensagem" placeholder="Comments"></textarea>
+          </label>
+          <button class=" item button button-block button-positive" type="submit">
+            Enviar
+          </button>
 
-        <ul class="list">
+        </div>
+      </form>
+          
+<div class="list">
 
-          <li class="item item-checkbox checkbox-assertive">
-             <label class="checkbox">
-               <input type="checkbox">
-             </label>
-             Flux Capacitor
-          </li>
+    <div class="item item-avatar" ng-repeat="feed in feeds | orderBy: '-data'">
+      <img ng-src="{{feed.imagem}}">
+      <h2>{{feed.nome}}</h2> <!-- {{feed.data | date: 'dd/MM/yyyy HH:mm'}} -->
+      <p>{{feed.mensagem}}</p>
+    </a>
 
-      <h1>Feed</h1>
+</div>
+
   </ion-content>
 </ion-view>
