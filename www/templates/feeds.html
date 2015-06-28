@@ -22,7 +22,7 @@
           
       <div class="list" ng-show="user">
 
-          <div class="item item-avatar" ng-repeat="feed in feeds | orderBy: '-data'">
+          <div class="item item-avatar item-text-wrap" ng-repeat="feed in feeds | orderBy: '-data'">
             <img ng-src="{{feed.imagem}}">
             <h2>{{feed.nome}}</h2> <!-- {{feed.data | date: 'dd/MM/yyyy HH:mm'}} -->
             <p>{{feed.mensagem}}</p>
