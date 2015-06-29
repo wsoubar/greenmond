@@ -105,7 +105,7 @@ angular.module('starter.controllers', [])
       
       if ($scope.formData.mensagem) {
         $scope.feeds.$add({
-          "nome": $scope.user.nome + ' ('+$scope.user.jogador+')', 
+          "nome": $scope.user.nome, 
           "mensagem": $scope.formData.mensagem,
           "imagem": $scope.user.claImage,
           "data": Date.now()
