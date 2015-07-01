@@ -1,6 +1,6 @@
 <ion-view view-title="Feed">
   <ion-content>
-      <div class="item" ng-hide="user">
+      <div class="item item-text-wrap" ng-hide="user">
          <h3>Você precisa fazer o login para acessar o feed da história</h3>
       </div>
       <ion-refresher
@@ -24,7 +24,7 @@
 
           <div class="item item-avatar item-text-wrap" ng-repeat="feed in feeds | orderBy: '-data'">
             <img ng-src="{{feed.imagem}}">
-            <h2>{{feed.nome}}</h2> <!-- {{feed.data | date: 'dd/MM/yyyy HH:mm'}} -->
+            <h2>{{feed.nome}} <span style="float: right; font-size: 12px;">{{feed.data | date: 'dd/MM/yyyy HH:mm'}}</span></h2> 
             <p>{{feed.mensagem}}</p>
           </a>
 
