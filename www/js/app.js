@@ -20,7 +20,7 @@ angular.module('starter', ['ionic', 'ngStorage', 'firebase', 'starter.controller
 
     $http.get('./personagens.json')
      .success(function(data) {
-        console.log('data', data);
+        //console.log('data', data);
         $rootScope.personagens = data;
      })
      .error(function(err) {
@@ -36,7 +36,7 @@ angular.module('starter', ['ionic', 'ngStorage', 'firebase', 'starter.controller
         // alert('Opa!!!');
       //}
     }, 100);
-   $scope.$on('$destroy', de);
+   $rootScope.$on('$destroy', de);
 
   });
 })

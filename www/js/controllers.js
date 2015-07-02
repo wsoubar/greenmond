@@ -96,10 +96,15 @@ angular.module('starter.controllers', [])
     $scope.personagem = $stateParams.personagem;
 })
 
-.controller('FeedsCtrl', function($scope, $stateParams, Feeds) {
+.controller('FeedsCtrl', function($scope, $stateParams, Feeds, $rootScope) {
 
     $scope.formData = {};
+    $scope.enviarMsg = false;
     $scope.feeds = Feeds;
+
+    $scope.mostraEnvio = function () {
+        $scope.enviarMsg = !$scope.enviarMsg;
+    };
 
     $scope.addFeed = function() {
       
