@@ -9,7 +9,7 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 //    $scope.personagens = [];
-  
+
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -144,13 +144,12 @@ angular.module('starter.controllers', [])
 
 
 })
-.factory("Feeds", function($firebaseArray) {
+
+.factory("Feeds", function ($firebaseArray) {
   var feedsRef = new Firebase("https://glaring-fire-2264.firebaseio.com/feeds");
   var query = feedsRef.limitToLast(40);
   return $firebaseArray(query);
 })
 
-.controller('NpcsCtrl', function($scope, $stateParams) {
-})
 
 ;
