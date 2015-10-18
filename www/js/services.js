@@ -3,14 +3,11 @@
 	var app = angular.module('starter.services', []);
 
 	app.factory("Feeds", function ($firebaseArray) {
-		var fbAuth = fb.getAuth();
-		if (fbAuth) {
 	        //var userReference = fb.child("users/" + fbAuth.uid);
 
-			var feedsRef = new Firebase(firebaseBaseUrl + "/feeds/"+fbAuth.uid);
+			var feedsRef = new Firebase(firebaseBaseUrl + "/feeds/");
 			var query = feedsRef.limitToLast(40);
 			return $firebaseArray(query);
-		}
 	});
 
 })();

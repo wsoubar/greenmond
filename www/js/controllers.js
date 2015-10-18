@@ -1,6 +1,10 @@
+var firebaseBaseUrl = "https://glaring-fire-2264.firebaseio.com";
+var fb = new Firebase(firebaseBaseUrl);
+//var fbAuth = $firebaseAuth(fb);
+
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $ionicPopup, $timeout, $localStorage, $rootScope, $firebaseAuth) {
+.controller('AppCtrl', function($scope, $ionicModal, $ionicPopup, $timeout, $localStorage, $rootScope, $firebaseAuth, $firebase) {
   
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -30,32 +34,41 @@ angular.module('starter.controllers', [])
     $scope.modal.show();
   };
   // An alert dialog
-   $scope.showAlert = function (title, msg) {
-     var alertPopup = $ionicPopup.alert({
-       title: title,
-       template: msg
-     });
-     alertPopup.then(function(res) {
-       console.log('fechou alert');
-     });
-   };
+  $scope.showAlert = function (title, msg) {
+   var alertPopup = $ionicPopup.alert({
+     title: title,
+     template: msg
+   });
+   alertPopup.then(function(res) {
+     console.log('fechou alert');
+   });
+  };
 
-   $scope.doLogout = function() {
-      if (confirm('Sair?')) {
-          delete $localStorage.user;
-          delete $rootScope.user;
-      }
-   };
+  $scope.doLogout = function() {
+    if (confirm('Sair?')) {
+        delete $localStorage.user;
+        delete $rootScope.user;
+        fb.unauth();
+    }
+  };
 
    
    $scope.doRegister = function() {
       var userInfo = $scope.loginData;
-      fbAuth.$createUser({email: userInfo.username, password: userInfo.password}).then(function(userData) {
+      var fbAuth = $firebaseAuth(fb);
+
+      fbAuth.$createUser({email: userInfo.username, password: userInfo.password})
+      .then(function(userData) {
+
+          fb.child('users').child(userData.uid).set({nome: "Ciclano Pers", jogador:"Fulano Jog"})  ;
+
           return fbAuth.$authWithPassword({
               email: userInfo.username,
               password: userInfo.password
           });
+
       }).then(function(authData) {
+
           $scope.closeLogin();
       }).catch(function(error) {
           console.error("ERROR: " + error);
@@ -91,13 +104,24 @@ angular.module('starter.controllers', [])
         email: userInfo.username,
         password: userInfo.password
     }).then(function(authData) {
+
+        console.log("----");
+        console.log(fb.child('users').child(authData.uid).val());
+
+
+
+        $localStorage.user = authData;   
+        $rootScope.user = authData;
+
         $scope.showAlert('Sucesso', 'Bem vindo!!!');
-        console.error("AuthData: " + JSON.stringify(authData));
+        console.log("AuthData: " + JSON.stringify(authData));
+        console.log(m);
 
     }).catch(function(error) {
         console.error("ERROR: " + error);
         $scope.showAlert('Falha', 'Usuário ou senha inválidos!');        
     });
+
 /*
     if (user) {
         $scope.showAlert('Sucesso', 'Bem vindo, <strong>' + user.jogador+'</strong>!');

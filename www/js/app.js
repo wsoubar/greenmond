@@ -8,9 +8,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'firebase', 'start
 
 .run(function ($ionicPlatform, $rootScope, $http, $ionicHistory) {
 
-    var firebaseBaseUrl = "https://glaring-fire-2264.firebaseio.com";
-    var fb = new Firebase(firebaseBaseUrl);
-
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -21,6 +18,22 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'firebase', 'start
           // org.apache.cordova.statusbar required
           StatusBar.styleDefault();
         }
+
+    var setup = 1;
+
+    if (setup) {
+      $http.get('./personagens.json')
+      .success(function(data) {
+        //console.log('data', data);
+        $rootScope.personagens = data;
+
+
+      })
+      .error(function(err) {
+        console.log('erro buscando personagens', err);
+      }); 
+    }
+
 
 
         var de = $ionicPlatform.registerBackButtonAction(function (event) {
@@ -34,7 +47,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'firebase', 'start
         }, 100);
         
         $rootScope.$on('$destroy', de);
-
     });
 })
 
@@ -124,14 +136,3 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'firebase', 'start
 });
 
 
-function setup (argument) {
-  $http.get('./personagens.json')
-  .success(function(data) {
-    //console.log('data', data);
-    $rootScope.personagens = data;
-  })
-  .error(function(err) {
-    console.log('erro buscando personagens', err);
-  }); 
-
-}
