@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $ionicPopup, $timeout, $localStorage, $rootScope) {
+.controller('AppCtrl', function($scope, $ionicModal, $ionicPopup, $timeout, $localStorage, $rootScope, $firebaseAuth) {
   
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -47,15 +47,36 @@ angular.module('starter.controllers', [])
       }
    };
 
+   
+   $scope.doRegister = function() {
+      var userInfo = $scope.loginData;
+      fbAuth.$createUser({email: userInfo.username, password: userInfo.password}).then(function(userData) {
+          return fbAuth.$authWithPassword({
+              email: userInfo.username,
+              password: userInfo.password
+          });
+      }).then(function(authData) {
+          $scope.closeLogin();
+      }).catch(function(error) {
+          console.error("ERROR: " + error);
+          alert('ERROR: ' + error);
+      });
+
+  };
+
+
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
+
+    var userInfo = $scope.loginData;
 
     if (!$scope.loginData.username || !$scope.loginData.password) {
         $scope.showAlert('Falha', 'Usuário e senha devem estar preenchidos!');        
         return;
     }
 
+    /*
     var user = undefined;
     for (var i = 0; i < $rootScope.personagens.length; i++) {
         p = $rootScope.personagens[i];
@@ -63,7 +84,21 @@ angular.module('starter.controllers', [])
             user = angular.copy(p);
         }
     };
+  */
+    var fbAuth = $firebaseAuth(fb);
 
+    fbAuth.$authWithPassword({
+        email: userInfo.username,
+        password: userInfo.password
+    }).then(function(authData) {
+        $scope.showAlert('Sucesso', 'Bem vindo!!!');
+        console.error("AuthData: " + JSON.stringify(authData));
+
+    }).catch(function(error) {
+        console.error("ERROR: " + error);
+        $scope.showAlert('Falha', 'Usuário ou senha inválidos!');        
+    });
+/*
     if (user) {
         $scope.showAlert('Sucesso', 'Bem vindo, <strong>' + user.jogador+'</strong>!');
         $localStorage.user = user;   
@@ -72,13 +107,14 @@ angular.module('starter.controllers', [])
         $scope.showAlert('Falha', 'Usuário ou senha inválidos!');        
         return;
     }
+  */
     // $scope.showAlert('Sucesso', 'Login realizado com sucesso');
 
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
-    $timeout(function() {
+    //$timeout(function() {
       $scope.closeLogin();
-    }, 1000);
+    //}, 1000);
   };
 
   if ($localStorage.user) {
@@ -96,7 +132,7 @@ angular.module('starter.controllers', [])
     $scope.personagem = $stateParams.personagem;
 })
 
-.controller('FeedsCtrl', function($scope, $stateParams, Feeds, $rootScope) {
+.controller('FeedsCtrl', function ($scope, $stateParams, Feeds, $rootScope, $cordovaLocalNotification) {
 
     $scope.formData = {};
     $scope.enviarMsg = false;
@@ -104,6 +140,25 @@ angular.module('starter.controllers', [])
 
     $scope.mostraEnvio = function () {
         $scope.enviarMsg = !$scope.enviarMsg;
+    };
+
+    $scope.testeNotificacao = function () {
+      var alarmTime = new Date();
+          alarmTime.setMinutes(alarmTime.getMinutes() + 1);
+          $cordovaLocalNotification.add({
+              id: "1234",
+              date: alarmTime,
+              message: "This is a message",
+              title: "This is a title",
+              autoCancel: true,
+              sound: null
+          }).then(function () {
+              console.log("The notification has been set");
+          });
+
+        $cordovaLocalNotification.isScheduled("1234").then(function(isScheduled) {
+            alert("Notification 1234 Scheduled: " + isScheduled);
+        });
     };
 
     $scope.addFeed = function() {
@@ -145,11 +200,12 @@ angular.module('starter.controllers', [])
 
 })
 
+/*
+
 .factory("Feeds", function ($firebaseArray) {
   var feedsRef = new Firebase("https://glaring-fire-2264.firebaseio.com/feeds");
   var query = feedsRef.limitToLast(40);
   return $firebaseArray(query);
-})
-
+}) */
 
 ;

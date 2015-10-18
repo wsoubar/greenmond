@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="br.com.wsoubar.greenmond" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Greenmond Town</name>
+  <name>Greenmond</name>
   <description>
-        An Ionic Framework and Cordova project.
+        Aplicativo de suporte para mesas de RPG
     </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
+  <author email="wsoubar@gmail.com" href="http://www.facebook.com/wsoubar">
       Ionic Framework Team
     </author>
   <content src="index.html"/>

@@ -4,14 +4,12 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'firebase', 'starter.controllers'])
+angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'firebase', 'starter.services', 'starter.controllers'])
 
 .run(function ($ionicPlatform, $rootScope, $http, $ionicHistory) {
-    // PUSH 
-    var androidConfig = {
-        "senderID": "Wagner_Barbosa_123",
-    };
 
+    var firebaseBaseUrl = "https://glaring-fire-2264.firebaseio.com";
+    var fb = new Firebase(firebaseBaseUrl);
 
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -24,14 +22,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'firebase', 'start
           StatusBar.styleDefault();
         }
 
-        $http.get('./personagens.json')
-         .success(function(data) {
-            //console.log('data', data);
-            $rootScope.personagens = data;
-         })
-         .error(function(err) {
-              console.log('erro buscando personagens', err);
-         }); 
 
         var de = $ionicPlatform.registerBackButtonAction(function (event) {
           //if($ionicHistory.currentStateName() == "myiew"){
@@ -45,49 +35,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'firebase', 'start
         
         $rootScope.$on('$destroy', de);
 
-/*
-//
-    $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-              alert('evento' + notification.event);
-
-      switch(notification.event) {
-        case 'registered':
-          if (notification.regid.length > 0 ) {
-            alert('registration ID = ' + notification.regid);
-          }
-          break;
-
-        case 'message':
-          // this is the actual push notification. its format depends on the data model from the push server
-          alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-          break;
-
-        case 'error':
-          alert('GCM error = ' + notification.msg);
-          break;
-
-        default:
-          alert('An unknown GCM event has occurred');
-          break;
-      }
-    });
-
-        $cordovaPush.register(androidConfig).then(function (result) {
-            alert('result: ' + JSON.stringify(result));
-            console.log('result', result);
-        }, function (err) {
-            console.log('err', err);
-        })
-
-
-    // WARNING: dangerous to unregister (results in loss of tokenID)
-    $cordovaPush.unregister(options).then(function(result) {
-      // Success!
-    }, function(err) {
-      // Error
-    })
-//
-*/
     });
 })
 
@@ -175,3 +122,16 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'firebase', 'start
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/feeds');
 });
+
+
+function setup (argument) {
+  $http.get('./personagens.json')
+  .success(function(data) {
+    //console.log('data', data);
+    $rootScope.personagens = data;
+  })
+  .error(function(err) {
+    console.log('erro buscando personagens', err);
+  }); 
+
+}

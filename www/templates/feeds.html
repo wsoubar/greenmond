@@ -4,6 +4,11 @@
           <i class="icon ion-compose"></i>
         </button>
     </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button" ng-click="testeNotificacao()"  ng-show="user">
+          <i class="icon ion-paper-airplane"></i>
+        </button>
+    </ion-nav-buttons>
     <ion-content>
       <!-- <pre>msg: {{enviarMsg}} | user: {{user}}</pre> -->
       <div class="item item-text-wrap" ng-hide="user">
