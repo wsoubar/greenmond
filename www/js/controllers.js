@@ -91,6 +91,11 @@ angular.module('starter.controllers', [])
 
 })
 
+.controller('NpcsCtrl', function ($scope, $stateParams) {
+    console.log('$stateParams', $stateParams);
+    $scope.personagem = $stateParams.personagem;
+})
+
 .controller('PersonagemCtrl', function($scope, $stateParams) {
     console.log('$stateParams', $stateParams);
     $scope.personagem = $stateParams.personagem;
