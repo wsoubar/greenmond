@@ -26,7 +26,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'firebase', 'start
 
         $http.get('./personagens.json')
          .success(function(data) {
-            //console.log('data', data);
+            console.log('data', data);
             $rootScope.personagens = data;
          })
          .error(function(err) {
